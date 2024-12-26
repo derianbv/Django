@@ -127,7 +127,9 @@ id	nombre	    puesto
 
 
 
-2. Relación 1toMany
+2. Relación 1a1 y 1toMany: 
+
+1 to Many-----------------------
 
 class Autor(models.Model):
     nombre = models.CharField(max_length=255) 
@@ -151,6 +153,28 @@ id	nombre_cancion	autor_id
 2	Canción 2	       1
 3	Canción 3	       2
 
+1 to 1 --------------------------------------------------------------------------------------
+-Manera manual (constraint Unique):
+
+
+class Autor(models.Model):
+    nombre = models.CharField(max_length=255) 
+
+class Cancion(models.Model):
+    nombre_cancion = models.CharField(max_length=255)  # Nombre de la canción.
+    autor = models.ForeignKey(Autor, on_delete=CASCADE, unique=True)  ######## ACÁ ESTÁ LA MAGIA 
+
+-Manera 2 (usando OnetoOne): 
+
+
+class Autor(models.Model):
+    nombre = models.CharField(max_length=255)
+
+class Cancion(models.Model):
+    Autor = models.OneToOneField(Autor, on_delete=models.CASCADE)  #Esto añade implicitamente el unique
+    nombre_cancion = models.TextField()
+
+    
 ####################### METADATA y Choises #############################################################################
 
 
