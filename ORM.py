@@ -266,15 +266,27 @@ learner = Learner(occupation="doctor")  # Error: "doctor" no está en OCCUPATION
 1. SELECT * FROM productos;
 2. query = Productos.objects.all()
 
+-SELECT a uno solo: 
 
+1. SELECT * FROM comentarios WHERE post_id = 1;
+2. comentarios_del_post = Post.objects.get(id=1).comentario_set.all()
 
 -WHERE------------------------------
 1. SELECT * FROM productos WHERE costo > 100;
 2. productos_caros = Producto.objects.filter(precio__gt=100)
 
 
--ONDER BY------------------------------
-1. SELECT * FROM productos WHERE costo > 100;
-2. productos_caros = Producto.objects.filter(precio__gt=100)
+-ORDER BY------------------------------
+1. SELECT * FROM usuarios ODER BY nombre;
+2. usuariosOrdenados = Usuarios.objects.order_by('nombre')
+
+
+-GROUP BY-----------------------------------------------
+1. SELECT ciudad, COUNT(*) FROM personas GROUP BY ciudad;
+2. cantidad_por_ciudad = Persona.objects.values('ciudad').annotate(total=Count('id'))
+
+-GROUP BY-----------------------------------------------
+1. SELECT * FROM pedidos INNER JOIN clientes ON pedidos.cliente_id = clientes.id;
+2. pedidos_con_clientes = Pedido.objects.select_related('cliente')
 
 '''
