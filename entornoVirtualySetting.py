@@ -99,5 +99,18 @@ Quit the server with CONTROL-C.
 ----------------------------------------------------------------
 
 
+################ Crear apps ################################333
+en /settings.py se debe añadir la app a agregar: 
+
+INSTALLED_APPS = [
+    'firstapp.apps.FirstappConfig', ################ Acá
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+
 
 '''
