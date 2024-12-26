@@ -39,4 +39,11 @@ class User(models.Model):
 Linux:
 python3 manage.py makemigrations orm
 - Ayuda a crear un archivo en el proyecto con las migraciones que hago a la base de datos
+- Para ver esta carpeta: python3 manage.py sqlmigrate orm 0001
+
+!!!!!!!!!!!! Hay que hacerle commit a las cosas de la base de datos (muy silimar a hacer commits con git-linux) 
+
+python3 manage.py makemigrations # crea un nuevo archivo de migraciones (stagin area)
+
+python3 manage.py migrate # le hace commit al archivo 
 '''
