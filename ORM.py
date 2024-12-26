@@ -254,4 +254,27 @@ Ya en uso:
 
 learner = Learner(occupation="doctor")  # Error: "doctor" no está en OCCUPATION_CHOICES
 
+
+
+#################################### Queries #########################################################
+#Las consultas de ORM se deben crear con un objeto tipo query que guarda todos los outputs de una contulta
+
+(1 será POSTGRES  y 2 será ORM):
+
+-SELECT------------------------------
+
+1. SELECT * FROM productos;
+2. query = Productos.objects.all()
+
+
+
+-WHERE------------------------------
+1. SELECT * FROM productos WHERE costo > 100;
+2. productos_caros = Producto.objects.filter(precio__gt=100)
+
+
+-ONDER BY------------------------------
+1. SELECT * FROM productos WHERE costo > 100;
+2. productos_caros = Producto.objects.filter(precio__gt=100)
+
 '''
