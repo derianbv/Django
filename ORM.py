@@ -121,7 +121,7 @@ id	nombre	    puesto
         nombre = models.CharField(max_length=100)
 
     class Empleado(models.Model): #No hereda, se crea un modelo desde 0 
-        persona = models.OneToOneField(Persona, on_delete=models.CASCADE)  #se añada explicitamente la relación 1 a 1. 
+        persona = models.OneToOneField(Persona, on_delete=models.CASCADE)  #se añada explicitamente la relación 1 a 1, esto es una Foward relation
         puesto = models.CharField(max_length=50)
 
 
@@ -288,5 +288,13 @@ learner = Learner(occupation="doctor")  # Error: "doctor" no está en OCCUPATION
 -GROUP BY-----------------------------------------------
 1. SELECT * FROM pedidos INNER JOIN clientes ON pedidos.cliente_id = clientes.id;
 2. pedidos_con_clientes = Pedido.objects.select_related('cliente')
+
+-UPDATE ------------------------------------------------------
+UPDATE obj SET field1 AS "new value"
+
+2. 
+obj.field1 = "new value"
+obj.save()
+
 
 '''
