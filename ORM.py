@@ -97,7 +97,7 @@ class User(models.Model):
         return self.first_name + " " + self.last_name
 
 
-########################################### Herencia  ###########################################################
+########################################### Relaciones   ###########################################################
 1. RELACIÓN 1:1 : 
 -Se puede hacer de manera manual o por herencia. 
     -De manera HERENCIA: ****************************
@@ -126,6 +126,30 @@ id	nombre	    puesto
 
 
 
+
+2. Relación 1toMany
+
+class Autor(models.Model):
+    nombre = models.CharField(max_length=255) 
+
+class Cancion(models.Model):
+    nombre_cancion = models.CharField(max_length=255)  # Nombre de la canción.
+    autor = models.ForeignKey(Autor, on_delete=CASCADE) 
+
+
+Tabla Autor:
+id	nombre
+1	Juan Pérez
+2	Ana López
+
+
+
+#Many canciones pueden ser de One autor 
+Tabla Cancion:
+id	nombre_cancion	autor_id
+1	Canción 1	       1
+2	Canción 2	       1
+3	Canción 3	       2
 
 ####################### METADATA y Choises #############################################################################
 
