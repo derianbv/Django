@@ -127,7 +127,7 @@ id	nombre	    puesto
 
 
 
-2. Relación 1a1 y 1toMany: 
+2. Relación 1a1 y 1toMany: -----------------------------------------------------------------------------------------
 
 1 to Many-----------------------
 
@@ -218,8 +218,12 @@ id	cancion_id	autor_id
 
 le piedo poner through como parametro si quiero yo crear la tabla: 
 
-autores = models.ManyToManyField(Autor, thorugh='Table_que_yo_cree')
+autores = models.ManyToManyField(Autor, thorugh='AutorClase')
 
+class AutorCancion(models.Model):
+    autor = models.ForeignKey(Autor, on_delete=models.CASCADE)  #Como la base dimensional 
+    cancion = models.ForeignKey(Cancion, on_delete=models.CASCADE)
+    fecha_colaboracion = models.DateField()  # Campo extra para personalizar la relación.
 
 
 ####################### METADATA y Choises #############################################################################
