@@ -61,7 +61,7 @@ urlpatterns = [
 ]
 
 """
-Estos son los parámetros que recive path(route, view, kwargs=None, name=None)!!!!!!!!!!!!!!!!!
+Estos son los parámetros que recive path(route #no lleva / al comienzo , view #no lleva fx() parentesis porque se llama a la fx pero no se ejecuta, kwargs=None, name=None)!!!!!!!!!!!!!!!!!
 """
 
 
@@ -72,7 +72,7 @@ Ejemplo: {'foo': 'bar'} pasará el argumento foo con el valor 'bar' a la vista.
 -name (str, opcional):Es una cadena de texto que nombra la ruta. Este nombre se puede utilizar para referenciar la URL en otras partes de Django, como en plantillas o redirecciones. Es útil para generar URLs de forma dinámica.
 Ejemplo: name='post-detail'.
 
-
+"""
 4. Ahora en mi proyecto: mi_proyecto/urls.py debo incluir las urls de mi app: 
 """
 
