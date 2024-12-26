@@ -92,7 +92,7 @@ class User(models.Model):
     last_name = models.CharField(null = False, max_length = 30, default = 'john')
     dob = models.DateField(null = True)
 
-    def ___str__(self): #le puedo setear comportamientos a sus métodos como si fuera una clase normal
+    def ___str__(self): #le puedo sobreescribir comportamientos a sus métodos como si fuera una clase normal
         return self.first_name + " " + self.last_name
 
 
