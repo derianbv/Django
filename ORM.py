@@ -174,7 +174,54 @@ class Cancion(models.Model):
     Autor = models.OneToOneField(Autor, on_delete=models.CASCADE)  #Esto añade implicitamente el unique
     nombre_cancion = models.TextField()
 
-    
+id	nombre_cancion	autor_id (autor tiene que ser único) 
+1	Canción 1	       1
+2	Canción 2	       2
+3	Canción 3	       3 
+
+
+------------------------- Many to Many ----------------------------------------------------------------
+#Django crea la tabla intermedia automaticamente (en donde permutan) pero la puedo crear yo si quiero a través de through.
+
+Ejemplo:
+
+class Autor(models.Model):
+    nombre = models.CharField(max_length=255)
+
+class Cancion(models.Model):
+    nombre_cancion = models.TextField()
+    autores = models.ManyToManyField(Autor) #Solo debo poner y Django crea la tabla automaticamente. 
+
+------------
+Tabla autor: 
+-------------
+id	nombre
+1	Juan Pérez
+2	Ana López
+
+--------------
+tabla cancion 
+--------------
+id	nombre_cancion
+1	Balada del programador
+2	Canción de 
+
+
+-------------------------------------
+Tabla intermedia app_cancion_autores:
+-------------------------------------
+id	cancion_id	autor_id
+1	  1	        1
+2	  1	        2
+3	  2	        2
+
+
+le piedo poner through como parametro si quiero yo crear la tabla: 
+
+autores = models.ManyToManyField(Autor, thorugh='Table_que_yo_cree')
+
+
+
 ####################### METADATA y Choises #############################################################################
 
 
