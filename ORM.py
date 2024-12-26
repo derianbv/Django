@@ -32,7 +32,39 @@ class User(models.Model):
     # CharField for user's date for birth
     dob = models.DateField(null=True)
 
+'''
+####################################### Insertar Rows en tablas #######################
 
+
+# Definimos el modelo Course
+from django.db import models
+
+class Course(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+
+# Definimos el modelo Project
+class Project(models.Model):
+    name = models.CharField(max_length=255)
+    grade = models.FloatField()
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)  #-------- Relación 1 a m con Course
+
+# Crear una instancia de Course
+course_cloud_app = Course(
+    name="Cloud Application Development with Database",
+    description="Develop and deploy application on cloud"
+)
+course_cloud_app.save()  # Guardar la instancia en la base de datos (le hace commit)
+
+# Crear una instancia de Project asociada al curso anterior
+project_orm = Project(
+    name="Object-relational mapping project",
+    grade=0.2,
+    course=course_cloud_app
+)
+project_orm.save()  
+
+'''
 ############################################### Settings ##############################################################
 
 ########### Migraciones (subir a la base de datos) ---------------------------------------------------------------------------
@@ -46,4 +78,23 @@ python3 manage.py makemigrations orm
 python3 manage.py makemigrations # crea un nuevo archivo de migraciones (stagin area)
 
 python3 manage.py migrate # le hace commit al archivo 
+
+
+
+
+###################################### Especial variables  ######################################################
+from django.db import models
+from django.utils.timezone import now
+
+
+class User(models.Model): 
+    first_name = models.CharField(null = False, max_length = 30, default = 'john')
+    last_name = models.CharField(null = False, max_length = 30, default = 'john')
+    dob = models.DateField(null = True)
+
+    def ___str__(self): #le puedo setear comportamientos a sus métodos como si fuera una clase normal
+        return self.first_name + " " + self.last_name
+
+
+
 '''
