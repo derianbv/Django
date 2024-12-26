@@ -21,6 +21,7 @@ CREATE TABLE User (
 
 
 Como es en Django:-----------------------------------------------------------------------------------
+#Es importante recalcar que a estas tablas se les asigna un primary key implicito con serial (basicamente añade de manera implicita esto:  id = models.AutoField(primary_key=True))
 
 from django.db import models
 
@@ -96,5 +97,30 @@ class User(models.Model):
         return self.first_name + " " + self.last_name
 
 
+########################################### Herencia  ###########################################################
+1. RELACIÓN 1:1 : 
+-Se puede hacer de manera manual o por herencia. 
+    -De manera HERENCIA: ****************************
 
+    class Persona(models.Model): 
+        nombre models.charField(max_lenght = 4) 
+
+    class Trabajador (Persona): #Hereda de persona, o sea se le añade implicitamente una FK que apunta al id de Persona
+        puesto models.charField(max_lenght = 4) 
+
+Así queda la tabla Trabajador
+
+id	nombre	    puesto
+1	Juan Pérez	Ingeniero
+2	Ana López	Diseñadora
+
+
+    -De manera Manual: 
+
+    class Persona(models.Model):
+        nombre = models.CharField(max_length=100)
+
+    class Empleado(models.Model): #No hereda, se crea un modelo desde 0 
+        persona = models.OneToOneField(Persona, on_delete=models.CASCADE)  #se añada explicitamente la relación 1 a 1. 
+        puesto = models.CharField(max_length=50)
 '''
