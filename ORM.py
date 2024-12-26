@@ -35,7 +35,7 @@ class User(models.Model):
 
 ############################################### Settings ##############################################################
 
-########### Migraciones ---------------------------------------------------------------------------
+########### Migraciones (subir a la base de datos) ---------------------------------------------------------------------------
 Linux:
 python3 manage.py makemigrations orm
 - Ayuda a crear un archivo en el proyecto con las migraciones que hago a la base de datos
