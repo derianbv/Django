@@ -123,4 +123,36 @@ id	nombre	    puesto
     class Empleado(models.Model): #No hereda, se crea un modelo desde 0 
         persona = models.OneToOneField(Persona, on_delete=models.CASCADE)  #se añada explicitamente la relación 1 a 1. 
         puesto = models.CharField(max_length=50)
+
+
+
+
+####################### METADATA y Choises #############################################################################
+
+
+class Learner(User):
+------------------------------------------
+Estos no son columnas, son meta data que se puede guardar en los modelos, en este caso en concreto sirven para poner restricciones 
+    STUDENT = 'student'
+    DEVELOPER = 'developer'
+    DATA_SCIENTIST = 'data_scientist'
+    DATABASE_ADMIN = 'dba'
+
+    OCCUPATION_CHOICES = [
+        (STUDENT, 'Student'),
+        (DEVELOPER, 'Developer'),
+        (DATA_SCIENTIST, 'Data Scientist'),
+        (DATABASE_ADMIN, 'Database Admin')
+    ]
+-----------------------------------------------------------
+    occupation = models.CharField(
+        max_length=20,
+        choices=OCCUPATION_CHOICES, #El parametro sirve para solo admitir ciertos datos, en este caso los datos serán los que se guardaron en la metadata 
+        default=STUDENT
+    )
+
+Ya en uso:
+
+learner = Learner(occupation="doctor")  # Error: "doctor" no está en OCCUPATION_CHOICES
+
 '''
