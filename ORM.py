@@ -260,7 +260,29 @@ learner = Learner(occupation="doctor")  # Error: "doctor" no está en OCCUPATION
 ################################################# Consultas ##########################################
 
 Puedo llamar a la base de datos usando un Manager Objects que es mi intermediario con la base de tados:
-Cuando creo un modelo: class Course(models.Model), Models le agrega un Manager o "representante" a la función que se encargará de mediar con la base de datos: 
+Cuando creo un modelo: class Course(models.Model), Models le agrega un Manager o "representante" llamado Objects a la función que se encargará de mediar con la base de datos: 
+Las consultas sacan un objeto llamado QuerySet que es en sí la comlumna o columnas que consulté: 
+
+IN:
+# Obtener los 3 cursos con mayor total_enrollment que están activos
+course_list = Course.objects.filter(is_active=True).order_by('-total_enrollment')[:3]
+
+OUT:  
+
+id	name	total_enrollment	is_active
+3	Data Science	150	True
+1	Python Basics	120	True
+2	Django Advanced	80	True
+
+escrito de manera abstracta así: <Course: Data Science>, <Course: Python Basics>, <Course: Django Advanced>, <Course: Flask Essentials>] #este es un queryset 
+
+Vemos en el ejemplo de arriba como el manager objects sacó su función filter, pero pueden ser más: 
+
+
+Course.objects.all()          # Devuelve todos los objetos (QuerySet).
+Course.objects.filter(...)    # Filtra objetos.
+Course.objects.exclude(...)   # Excluye objetos.
+Course.objects.order_by(...)  # Ordena objetos.
 
 
 
