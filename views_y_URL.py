@@ -19,6 +19,7 @@ def home(request): #request como parámetro es la solicitud del usuario
 
 
 """
+Esta funcion retorna una respuesta HTTP.
 Parámetros que recibe HttpResponse(content, content_type, status, reason, charset, headers) #Devuelve solo cosas estáticas, no acepta conexto para hacer lógica como: {% for course in course_list %} 
 
 1. content (str, bytes, or iterable):
