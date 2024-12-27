@@ -15,11 +15,11 @@ python manage.py startapp firstapp
 from django.http import HttpResponse #Esta clase ayuda a devolver una respuesta Http desde la fx
 
 def home(request): #request como parámetro es la solicitud del usuario
-    return HttpResponse("¡Hola, mundo! Esta es la página principal de firstapp.")
+    return HttpResponse("¡Hola, mundo! Esta es la página principal de firstapp.") # También puede ser render()
 
 
 """
-Parámetros que recibe HttpResponse(content, content_type, status, reason, charset, headers)
+Parámetros que recibe HttpResponse(content, content_type, status, reason, charset, headers) #Devuelve solo cosas estáticas, no acepta conexto para hacer lógica como: {% for course in course_list %} 
 
 1. content (str, bytes, or iterable):
 El contenido de la respuesta. Puede ser una cadena de texto, bytes o un iterable que genere cadenas de texto o bytes.
@@ -49,8 +49,21 @@ Ejemplo: HttpResponse("Hello, world!", content_type="text/html", charset="utf-8"
 
 Un diccionario de encabezados HTTP que se agregarán a la respuesta.
 Ejemplo: HttpResponse("Hello, world!", headers={"Custom-Header": "value"})
+
+
+Para hacer templates que cambien con el contexto o las variables que les pasamos debemos usar render() que es exclusivo para plantillas html. 
+
+django.shortcuts.render(request, template_name, context=None, content_type=None, status=None, using=None)
+a. request (obligatorio) = es el parametro del requereminento que le hizo el cx a la vista. 
+b. template_name (obligatorio) = el nombre de la plantilla que vamos a usar, django busca en lals rutas definidas en la setting TEMPLATES de settings.py
+
 """
-    
+
+
+
+
+
+
 """
 3. Ahora es necesario configurar la URL de la vista en firstapp/urls.py:
 """
@@ -77,6 +90,9 @@ Ejemplo: name='post-detail'.
 
 """
 4. Ahora en mi proyecto: mi_proyecto/urls.py debo incluir las urls de mi app: 
+"""
+
+
 
 
 from django.contrib import admin
@@ -87,6 +103,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('firstapp/', include('firstapp.urls')), #ACA
 ]
+
+
 
 
 
