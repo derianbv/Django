@@ -56,6 +56,50 @@ Para hacer templates que cambien con el contexto o las variables que les pasamos
 django.shortcuts.render(request, template_name, context=None, content_type=None, status=None, using=None)
 a. request (obligatorio) = es el parametro del requereminento que le hizo el cx a la vista. 
 b. template_name (obligatorio) = el nombre de la plantilla que vamos a usar, django busca en lals rutas definidas en la setting TEMPLATES de settings.py
+c. context = diccionario que contiene variables que se le pasan a la plantilla, como si fueran escritas dentro del html así: {% with variable_name="valor" %} (context = {"variable_name": "valor"}), 
+contect_type = especifica el contenido de la respuesta HTTP que genera la vista, por defecto text/html 
+d. status = codigo de confirmación que retorna la página 
+e. using = el motor de render del html, se jinja2 u otro 
+
+________________ Ejemplo del contexto ____________________________
+
+**** en la vista ------------------
+
+from django.shortcuts import render
+
+def my_view(request):
+    context = {
+        "username": "Juan",  # Pasamos una variable 'username'
+        "is_logged_in": True,  # Indicamos que el usuario está logueado
+        "notifications": ["Mensaje 1", "Mensaje 2"],  # Lista de notificaciones
+    }
+    return render(request, "my_template.html", context)
+
+*** en el html my_template.html-------------------
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejemplo de Plantilla</title>
+</head>
+<body>
+    <h1>Hola, {{ username }}!</h1> #acá puede sacarlo porque encuentra la variable username que se le pasó por contexto 
+
+    {% if is_logged_in %}
+        <p>Estás conectado.</p>
+        <ul>
+            {% for notification in notifications %}
+                <li>{{ notification }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Por favor, inicia sesión.</p>
+    {% endif %}
+</body>
+</html>
+
+
 
 """
 
