@@ -86,7 +86,7 @@ python3 manage.py migrate # le hace commit al archivo
 ###################################### Especial variables  ######################################################
 from django.db import models
 from django.utils.timezone import now
-
+"""
 
 class User(models.Model): 
     first_name = models.CharField(null = False, max_length = 30, default = 'john')
@@ -95,7 +95,7 @@ class User(models.Model):
 
     def ___str__(self): #le puedo sobreescribir comportamientos a sus métodos como si fuera una clase normal
         return self.first_name + " " + self.last_name
-
+"""
 
 ########################################### Relaciones   ###########################################################
 1. RELACIÓN 1:1 : 
