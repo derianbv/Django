@@ -139,7 +139,7 @@ urlpatterns = [
 """
 Estos son los parámetros que recive path(route #no lleva / al comienzo , view #no lleva fx() parentesis porque se llama a la fx pero no se ejecuta, kwargs=None, name=None)!!!!!!!!!!!!!!!!!
 
--route: Ejemplo: 'posts/<int:id>/' acá el sistema detecta post/ ademas de las variables que se pasen por url. 
+-route: Ejemplo: 'posts/<int:id>/' acá el sistema detecta post/ ademas de las variables que se pasen por url pero esto debe notarse en la vista (f(x) que procesa la url: def course_details(request, course_id #pasarle el parametro)
 -view: Si la URL coincide se pasa la función para iniciar con su operación. 
 -kwargs (dict, opcional): Es un diccionario de argumentos adicionales que se pasan a la vista. Estos argumentos no se extraen de la URL, sino que se definen estáticamente en el diccionario.
 Ejemplo: {'foo': 'bar'} pasará el argumento foo con el valor 'bar' a la vista.
