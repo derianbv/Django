@@ -16,3 +16,7 @@ from django.contrib import admin
 
 admin.site.register(Course)
 admin.site.register(Instructor)
+
+#Esto nos dará unos campos (de los atributos de la clase) para añadir en la página, sin embargo, si queremos setear más campos configurables tenemos que crear una clase Admin del modelo:
+#/
+
