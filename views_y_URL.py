@@ -77,7 +77,7 @@ Ejemplo: name='post-detail'.
 
 """
 4. Ahora en mi proyecto: mi_proyecto/urls.py debo incluir las urls de mi app: 
-"""
+
 
 from django.contrib import admin
 from django.urls import path, include #ACA
@@ -89,7 +89,4 @@ urlpatterns = [
 ]
 
 
-
-
-"""
 
