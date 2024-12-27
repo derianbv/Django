@@ -123,7 +123,7 @@ def popular_course_list(request):
 
 
 """
-3. Ahora es necesario configurar la URL de la vista en firstapp/urls.py:
+3. Ahora es necesario configurar la URL de la vista en firstapp/urls.py: ####################### Path #################################
 
 """
 
