@@ -114,9 +114,9 @@ def popular_course_list(request):
     if request.method == 'GET':
         # Using the objects model manage to read all course list
         # and sort them by total_enrollment descending
-        course_list = Course.objects.order_by('-total_enrollment')[:10]
+        course_list = Course.objects.order_by('-total_enrollment')[:10] #ACÁ llamo a la base de datos 
         # Appen the course list as an entry of context dict
-        context['course_list'] = course_list
+        context['course_list'] = course_list # Acá la append al diccionario context
         return render(request, 'onlinecourse/course_list.html', context)
 
 
