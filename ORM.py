@@ -269,10 +269,10 @@ course_list = Course.objects.filter(is_active=True).order_by('-total_enrollment'
 
 OUT:  
 
-id	name	total_enrollment	is_active
-3	Data Science	150	True
-1	Python Basics	120	True
-2	Django Advanced	80	True
+id	name	        total_enrollment	    is_active
+3	Data Science	    150	                True
+1	Python Basics	    120	                True
+2	Django Advanced	    80	                True
 
 escrito de manera abstracta así: <Course: Data Science>, <Course: Python Basics>, <Course: Django Advanced>, <Course: Flask Essentials>] #este es un queryset 
 
@@ -284,6 +284,7 @@ Course.objects.filter(...)    # Filtra objetos.
 Course.objects.exclude(...)   # Excluye objetos.
 Course.objects.order_by(...)  # Ordena objetos.
 
+#Se pueden anidar
 
 
 Ejemplos (1 será POSTGRES  y 2 será ORM):
