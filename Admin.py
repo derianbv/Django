@@ -35,4 +35,7 @@ admin.site.register(Instructor)
 # en /models.py:
 
 class CourseAdmin(admin.ModelAdmin):
-    fields = ['pub_date', 'name', 'description'] #Acá pasamos las columnas de la clase original para 
+    fields = ['pub_date', 'name', 'description'] #Acá pasamos las columnas de la clase original para que sean editables 
+
+#A lo de arriba le pasamos como segundo parámetro la clase admin: 
+admin.site.register(Course, CourseAdmin)
