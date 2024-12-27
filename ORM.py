@@ -257,9 +257,14 @@ learner = Learner(occupation="doctor")  # Error: "doctor" no está en OCCUPATION
 
 
 #################################### Queries #########################################################
-#Las consultas de ORM se deben crear con un objeto tipo query que guarda todos los outputs de una contulta
+################################################# Consultas ##########################################
 
-(1 será POSTGRES  y 2 será ORM):
+Puedo llamar a la base de datos usando un Manager Objects que es mi intermediario con la base de tados:
+Cuando creo un modelo: class Course(models.Model), Models le agrega un Manager o "representante" a la función que se encargará de mediar con la base de datos: 
+
+
+
+Ejemplos (1 será POSTGRES  y 2 será ORM):
 
 -SELECT------------------------------
 
@@ -295,6 +300,9 @@ UPDATE obj SET field1 AS "new value"
 2. 
 obj.field1 = "new value"
 obj.save()
+
+
+
 
 
 '''
