@@ -67,6 +67,7 @@ ________________ Ejemplo del contexto ____________________________
 
 from django.shortcuts import render
 
+"""
 def my_view(request):
     context = {
         "username": "Juan",  # Pasamos una variable 'username'
@@ -75,7 +76,9 @@ def my_view(request):
     }
     return render(request, "my_template.html", context)
 
+"""
 *** en el html my_template.html-------------------
+"""
 
 
 <!DOCTYPE html>
@@ -101,15 +104,27 @@ def my_view(request):
 
 
 
-"""
+
+#____________________ejemplo 2, llamando a la base de datos para guardar context ___________________________________              
 
 
+def popular_course_list(request):
+    context = {}
+    # If the request method is GET
+    if request.method == 'GET':
+        # Using the objects model manage to read all course list
+        # and sort them by total_enrollment descending
+        course_list = Course.objects.order_by('-total_enrollment')[:10]
+        # Appen the course list as an entry of context dict
+        context['course_list'] = course_list
+        return render(request, 'onlinecourse/course_list.html', context)
 
 
 
 
 """
 3. Ahora es necesario configurar la URL de la vista en firstapp/urls.py:
+
 """
 
 from django.urls import path #path crea las url 
@@ -122,8 +137,6 @@ urlpatterns = [
 
 """
 Estos son los parámetros que recive path(route #no lleva / al comienzo , view #no lleva fx() parentesis porque se llama a la fx pero no se ejecuta, kwargs=None, name=None)!!!!!!!!!!!!!!!!!
-"""
-
 
 -route: Ejemplo: 'posts/<int:id>/' acá el sistema detecta post/ ademas de las variables que se pasen por url. 
 -view: Si la URL coincide se pasa la función para iniciar con su operación. 
@@ -133,10 +146,13 @@ Ejemplo: {'foo': 'bar'} pasará el argumento foo con el valor 'bar' a la vista.
 Ejemplo: name='post-detail'.
 
 """
-4. Ahora en mi proyecto: mi_proyecto/urls.py debo incluir las urls de mi app: 
+
+
 """
+4. Ahora en mi proyecto: mi_proyecto/urls.py debo incluir las urls de mi app: 
 
 
+"""
 
 
 from django.contrib import admin
