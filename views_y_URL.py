@@ -3,6 +3,8 @@
 
 Las vistas son esencialemente, funciones que reciben un solicitud web y devuelven una respuesta web, las podemos setear así:
 
+IN( Web request: GET,POST,UPDATE,DELETE) ---> f(x) -----> OUT(Web response: String, JSON/XML, HTML, error)
+
 1. creando una app: 
 
 python manage.py startapp firstapp
