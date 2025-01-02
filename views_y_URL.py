@@ -198,10 +198,17 @@ class EnrollView(View):
     # Handles post request
     def post(self, request, *args, **kwargs):
         course_id = kwargs.get('pk') #de aca utiliza al agente de consulta de la db y con el diccionario que se le pase a post se le pide que encuentre la llave que se llama pk
-        course = get_object_or_404(Course, pk=course_id)
+        course = get_object_or_404(Course, pk=course_id) 
         # Increase total enrollment by 1
         course.total_enrollment += 1
         course.save()
         return HttpResponseRedirect(reverse(viewname='onlinecourse:course_details', args=(course.id,)))
+
+'''
+urlpatterns = [
+    path('enroll/<int:pk>/', EnrollView.as_view(), name='enroll'),
+]
+'''
+En este caso, <int:pk> es una parte dinámica de la URL que se extraerá y se enviará a la vista como kwargs['pk'].
 
 
