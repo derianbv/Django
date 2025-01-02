@@ -40,4 +40,6 @@ def logout_request(request):
     # Redirect user back to course list view
     return redirect('onlinecourse:popular_course_list')
 
-# y también las url, 
+# y también crear la url 
+
+path('logout/', views.logout_request, name='logout'),
