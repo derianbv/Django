@@ -56,7 +56,7 @@ def login_request(request):
     # Handles POST request
     if request.method == "POST":
         # Get username and password from request.POST dictionary
-        username = request.POST['username'] 
+        username = request.POST['username'] #Viene del html
         password = request.POST['psw']
         # Try to check if provide credential can be authenticated
         user = authenticate(username=username, password=password)
