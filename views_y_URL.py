@@ -191,3 +191,17 @@ class CourseListView(View): #Acá se hereda de View pero hay otras clases de las
 path(route='', view=views.CourseListView.as_view(), name='popular_course_list'),
 
 
+#Para este tipo de vistar se necesita usar Kwards o args, mas info en derianbv/python-Avanzado: 
+
+class EnrollView(View):
+
+    # Handles post request
+    def post(self, request, *args, **kwargs):
+        course_id = kwargs.get('pk') #de aca utiliza al agente de consulta de la db y con el diccionario que se le pase a post se le pide que encuentre la llave que se llama pk
+        course = get_object_or_404(Course, pk=course_id)
+        # Increase total enrollment by 1
+        course.total_enrollment += 1
+        course.save()
+        return HttpResponseRedirect(reverse(viewname='onlinecourse:course_details', args=(course.id,)))
+
+
