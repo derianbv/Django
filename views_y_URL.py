@@ -185,7 +185,9 @@ class CourseListView(View): #Acá se hereda de View pero hay otras clases de las
         context['course_list'] = course_list
         return render(request, 'onlinecourse/course_list.html', context)
 
+#En las url se debe agregar de este modo: 
 
-
+# se llama a la clase y con una función as view() se pasa a función para que path lo pueda leer 
+path(route='', view=views.CourseListView.as_view(), name='popular_course_list'),
 
 
