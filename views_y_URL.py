@@ -171,10 +171,21 @@ urlpatterns = [
 
 ################################################################# Views Clases ####################################################################################
 
-
-
-
-
-
 '''
+#Basicamente sirve para aplicar POO a las views, sirve para heredar funciones ya hechas y así 
+
+
+# Note that we are subclassing CourseListView from base View class
+class CourseListView(View): #Acá se hereda de View pero hay otras clases de las que heredar
+
+    # Handles get request
+    def get(self, request):  #Esto es para 
+        context = {}
+        course_list = Course.objects.order_by('-total_enrollment')[:10]
+        context['course_list'] = course_list
+        return render(request, 'onlinecourse/course_list.html', context)
+
+
+
+
 
