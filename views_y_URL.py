@@ -205,6 +205,8 @@ class EnrollView(View):
         return HttpResponseRedirect(reverse(viewname='onlinecourse:course_details', args=(course.id,)))
 
 '''
+Expliación de como funciona def post(self, request, *args, **kwargs), especificamente **kwargs:
+
 urlpatterns = [
     path('enroll/<int:pk>/', EnrollView.as_view(), name='enroll'),
 ]
@@ -212,3 +214,41 @@ urlpatterns = [
 En este caso, <int:pk> es una parte dinámica de la URL que se extraerá y se enviará a la vista como kwargs['pk'].
 
 
+'''
+id (pk)	| name	            |total_enrollment
+1	    | Python Basics	    |   10
+2	    | Django Mastery	|   25
+
+
+La URL de inscripción para el curso con id=1 sería:  http://localhost:8000/enroll/1/
+
+
+Flujo del código:
+
+1. El usuario hace una solicitud POST a http://localhost:8000/enroll/1/.
+2. Django procesa la URL y extrae pk=1 de la parte dinámica de la ruta.
+3. Este pk se pasa a la vista como kwargs en post(self, request, *args, **kwargs)
+
+entonces: 
+'''
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from .models import Course
+
+class EnrollView(View):
+    def post(self, request, *args, **kwargs):
+        # Extraer el ID del curso desde kwargs
+        course_id = kwargs.get('pk')  # Aquí course_id será 1 por http://localhost:8000/enroll/1/.
+
+        # Buscar el curso en la base de datos usando el ID
+        course = get_object_or_404(Course, pk=course_id) #Retorna una fila 
+
+        # Incrementar el total de inscritos
+        course.total_enrollment += 1
+        course.save()
+
+        # Redirigir a los detalles del curso
+        return HttpResponseRedirect(reverse('onlinecourse:course_details', args=(course.id,)))
+
+'''
