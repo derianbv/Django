@@ -37,7 +37,9 @@ http://123.45.67.89: Acceso permitido.
 http://otro-sitio.com: Acceso bloqueado.
 
 '''
-
+CSRF_TRUSTED_ORIGINS = ['https://*.cognitiveclass.ai']
+#Permitir a sitios externos que manden solicitudes HTTP
+#CSRF significa Cross-Site Request Forgery (Falsificación de Solicitudes entre Sitios). Es un tipo de ataque de seguridad web donde un atacante hace que un usuario autenticado realice acciones no deseadas en un sitio web en el que está autenticado.
 
 # Application definition
 
@@ -142,6 +144,36 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+'''
+import os
+
+# URL base para archivos estáticos, acá Django buscará los archivos estaticos del proyecto
+STATIC_URL = '/static/'
+
+# Directorios adicionales donde buscar archivos estáticos
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static/"),  # Carpeta "static" en la raíz del proyecto
+)
+
+# Carpeta donde se recopilarán los archivos estáticos al ejecutar collectstatic (linux)
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles/")
+
+os.path.join() pega urls para que funcionen en cada sistema, windows sera backslash y linux normal slash 
+
+ruta = os.path.join("carpeta1", "carpeta2", "archivo.txt")
+print(ruta)
+LINUX: carpeta1/carpeta2/archivo.txt
+WINDOWS: carpeta1\carpeta2\archivo.txt
+
+
+
+Cuando se ejecuta el comando "python manage.py collectstatic", Django recopila todos los archivos estáticos desde:
+1. Carpetas static/ dentro de cada app.
+2. Directorios definidos en STATICFILES_DIRS.
+Todos estos archivos se colocan en un único directorio definido por STATIC_ROOT.
+
+
+'''
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
