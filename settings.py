@@ -50,6 +50,20 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+'''
+Son partes logicas del codigo que cumplen una función, pueden tener url en la pagina si yo lo decido, pero tengo que agregarlo en URLs 
+INSTALLED_APPS = [
+    'django.contrib.admin',        # Admin panel (tiene URLs)
+    'django.contrib.auth',         # Autenticación de usuarios (no directamente asociada a URLs, pero provee funcionalidades usadas en vistas)
+    'django.contrib.contenttypes', # Gestión de tipos de contenido (no tiene URLs)
+    'django.contrib.sessions',     # Gestión de sesiones (no tiene URLs)
+    'django.contrib.messages',     # Sistema de mensajes (no tiene URLs)
+    'django.contrib.staticfiles',  # Gestión de archivos estáticos (no tiene URLs)
+    'customer360'                  # App personalizada (podría tener URLs si defines un archivo urls.py), DEBE TENER EL NOMBRE DE LA CARPETA S
+]
+'''
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
