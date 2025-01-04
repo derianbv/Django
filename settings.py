@@ -26,6 +26,17 @@ SECRET_KEY = 'django-insecure-w-f2#^3p03duy53d2ed9vwi*t6*$dj95s7)gt0!6zte0@xa+hl
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+'''
+Son direcciones ip o urls que tienen permitido triguerear nuestra app 
+ALLOWED_HOSTS = ['mi-sitio.com', 'www.mi-sitio.com', '123.45.67.89']
+En este caso:
+
+http://mi-sitio.com: Acceso permitido.
+http://www.mi-sitio.com: Acceso permitido.
+http://123.45.67.89: Acceso permitido.
+http://otro-sitio.com: Acceso bloqueado.
+
+'''
 
 
 # Application definition
