@@ -7,3 +7,5 @@ from django import forms
 
 class formularioJe(forms.Form): 
   title = forms.CharField(#parametros para setear ese input)
+
+en el html después de haber pasado esta info en la vista, se pone con {{form}} (return render(request, "plantilla.html", {"form": formularioJe}) )
