@@ -303,7 +303,7 @@ Ejemplos (1 será POSTGRES  y 2 será ORM):
 
 -WHERE------------------------------
 1. SELECT * FROM productos WHERE costo > 100;
-2. productos_caros = Producto.objects.filter(precio__gt=100)
+2. productos_caros = Producto.objects.filter(precio__gt=100) #esto de __gt son filtros que se pueden poner en DJANGO, este por ejemplo es precio greater than 100 
 
 
 -ORDER BY------------------------------
