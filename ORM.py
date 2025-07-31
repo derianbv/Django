@@ -55,7 +55,7 @@ course_cloud_app = Course(
     name="Cloud Application Development with Database",
     description="Develop and deploy application on cloud"
 )
-course_cloud_app.save()  # Guardar la instancia en la base de datos (le hace commit)
+course_cloud_app.save()  # Guardar la instancia en la base de datos (le hace commit y push )
 
 # Crear una instancia de Project asociada al curso anterior
 project_orm = Project(
