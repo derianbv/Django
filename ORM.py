@@ -313,7 +313,7 @@ Ejemplos (1 será POSTGRES  y 2 será ORM):
 1. SELECT ciudad, COUNT(*) FROM personas GROUP BY ciudad;
 2. cantidad_por_ciudad = Persona.objects.values('ciudad').annotate(total=Count('id'))
 
--GROUP BY-----------------------------------------------
+-INNER JOIN -----------------------------------------------
 1. SELECT * FROM pedidos INNER JOIN clientes ON pedidos.cliente_id = clientes.id;
 2. pedidos_con_clientes = Pedido.objects.select_related('cliente')
 
