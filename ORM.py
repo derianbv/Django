@@ -5,7 +5,9 @@ La idea general se basa en manejar bases de datos con objetos (ya que son muy si
 se encargará de traducir el codigo a SQL, sin importar cuál sea su tipo (sqlite, mysql, etc). 
 
 
-Para realizar esto, se deben utilizar los modelos de django, que son epp de nombrar tablas. 
+Para realizar esto, se deben utilizar los modelos de django, que son epp formas de nombrar tablas. 
+
+Se realiza en la app/models.py
 EJEMPLO: 
 
 
