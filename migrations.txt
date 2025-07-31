@@ -1,1 +1,5 @@
 Sirve para que DJANGO se pueda comunicar con la base de datos y transferir los cambios. 
+
+
+en migrations/: 
+Crea documentos tipo 0001 o 0003 de cosas que aplicó o va a aplicar en la base de datos.
