@@ -56,7 +56,7 @@ Para hacer templates que cambien con el contexto o las variables que les pasamos
 
 django.shortcuts.render(request, template_name, context=None, content_type=None, status=None, using=None)
 a. request (obligatorio) = es el parametro del requereminento que le hizo el cx a la vista. 
-b. template_name (obligatorio) = el nombre de la plantilla que vamos a usar, django busca en lals rutas definidas en la setting TEMPLATES de settings.py
+b. template_name (obligatorio) = el nombre de la plantilla que vamos a usar, django busca en las rutas definidas en la setting TEMPLATES de settings.py
 c. context = diccionario que contiene variables que se le pasan a la plantilla, como si fueran escritas dentro del html así: {% with variable_name="valor" %} (context = {"variable_name": "valor"}), 
 contect_type = especifica el contenido de la respuesta HTTP que genera la vista, por defecto text/html 
 d. status = codigo de confirmación que retorna la página 
