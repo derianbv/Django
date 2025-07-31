@@ -2,3 +2,6 @@
 Cuando creo un proyecto nuevo, la primera app (o carpeta que se crea) es la general y la que va a tener los archivos de configuración generales. Es decir que esta será 
 la carpeta del Proyecto en realidad, y las otras serán solo carpetas de Apps. 
 
+
+
+!!!X: Las carpetas con __init__.py solo usan este archivo para que se puedan considerar como módulos y poderlos exportar. 
