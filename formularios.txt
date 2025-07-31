@@ -1,1 +1,9 @@
-Formularios 
+Formularios----------------------------------------------
+
+(0) Se deben crear en app/forms.py: 
+
+from django import forms 
+
+
+class formularioJe(forms.Form): 
+  title = forms.CharField(#parametros para setear ese input)
