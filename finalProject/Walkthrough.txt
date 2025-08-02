@@ -378,3 +378,40 @@ def summary(request):
 
 //en general lo que hace es, sacar los datos de la base, modificarlos y luego pasarlos en el return como diccionario a la variable context. 
 
+para la vista de abajo hay que recordar la tabla: 
+
+class Interaction(models.Model):
+    CHANNEL_EMAIL = 'email'
+    CHANNEL_PHONE = 'phone'
+    CHANNEL_CHOICES = [
+        (CHANNEL_EMAIL, 'Email'),
+        (CHANNEL_PHONE, 'Phone'),
+    ]
+
+Yo puedo acceder a atributos de clase (porque los tienen todas las instancias de esta clase, como si fueran CONST) realizando esto:
+NombreClase.atributo.
+
+channels = Interaction.CHANNEL_CHOICES
+
+def interact(request,cid):
+
+    channels = Interaction.CHANNEL_CHOICES //acá accedo a la clase y a su lista. 
+    directions = Interaction.DIRECTION_CHOICES
+    context = {"channels":channels,"directions":directions} //el conteto que voy a pasar. 
+
+    if request.method == "POST":
+
+        customer = Customer.objects.get(id=cid) 
+        channel = request.POST["channel"]
+        direction = request.POST["direction"]
+        summary = request.POST["summary"]
+        interaction = Interaction.objects.create(
+                                    customer=customer,
+                                    channel=channel,
+                                    direction=direction,
+                                    summary=summary)
+        interaction.save()
+        context["msg"] = "Interaction Success"
+        return render(request,"interact.html",context=context)
+
+    return render(request,"interact.html",context=context)
