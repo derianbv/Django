@@ -2,6 +2,12 @@ Desde el principio:
 
 EPP: POST y GET vienen de HTTP y son dos maneras diferente de enviar solicitudes a un servidor. 
 
+GET: Se usa para solicitar información del servidor sin provocar cambios. Los datos (por ejemplo, parámetros de búsqueda o filtros) se envíanal servidor como parte de la URL, lo que los hace visibles y limitados en tamaño. Es adecuado para obtener datos y que la respuesta sea reproducible sin efectos secundarios. Peticiones GET pueden ser cacheadas, marcadas como favoritas y utilizadas por buscadores.
+
+POST: Se usa para enviar datos al servidor para crear o modificar información. Los datos se envían en el cuerpo de la solicitud y no son visibles en la URL, lo que permite enviar más cantidad y tipos de datos con mayor privacidad (aunque no necesariamente seguridad). Es adecuado para formularios que modifican datos, como crear usuarios o guardar información. Peticiones POST no se cachean.
+
+
+
 Cuando un cx envía información tipo POST a una vista, DJANGO crea un objeto tipo request que se le pasa a las fn() que manejan las vistas: 
 
 def mi_vista(request //este es el que se pasa):
