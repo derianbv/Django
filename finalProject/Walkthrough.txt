@@ -11,4 +11,4 @@ python modulo.py ejecuta el archivo directamente, con extensión.
 2 INSTALLAR DJANGO: python3.11 -m pip install Django 
 3 INICIAR PROYECTO: django-admin startproject customer360 && cd customer360 
 4 Aplicar cambios de la base de datos hechos con el ORM en migrations/ (make migrations) y subirlos (migrate): python3.11 manage.py makemigrations && python3.11 manage.py migrate  
-
+5 INICIAR SERVER: python3.11 manage.py runserver
