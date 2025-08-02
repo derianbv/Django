@@ -6,7 +6,16 @@ EPP:
 python -m modulo ejecuta el módulo "modulo" en la ruta de módulos, sin extensión.
 python modulo.py ejecuta el archivo directamente, con extensión.
 
-0. Abrir un Virtual env 
+0. Abrir un Virtual env:
+
+
+pip install --upgrade distro-info
+pip3 install --upgrade pip==23.2.1
+pip install virtualenv
+virtualenv djangoenv
+source djangoenv/bin/activate
+
+
 1 DESCARGAR PIP: python3.11 -m ensurepip
 2 INSTALLAR DJANGO: python3.11 -m pip install Django 
 3 INICIAR PROYECTO (Proyecto es una carpeta): django-admin startproject customer360 && cd customer360 
