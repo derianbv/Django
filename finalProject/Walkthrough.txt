@@ -360,3 +360,21 @@ def create_customer(request):
         msg = "Successfully Saved a Customer"
         return render(request,"add.html",context={"msg":msg})
     return render(request,"add.html")
+
+
+
+def summary(request):
+    thirty_days_ago = date.today() - timedelta(days=30)
+    interactions = Interaction.objects.filter(interaction_date__gte=thirty_days_ago)
+
+    count = len(interactions)
+    interactions = interactions.values("channel","direction").annotate(count=Count('channel')) //values() hace combinatoria de channel y direction, annotate() suma los resultados iguales. 
+    context={
+                "interactions":interactions,
+                "count":count
+             }
+
+    return render(request,"summary.html",context=context)
+
+//en general lo que hace es, sacar los datos de la base, modificarlos y luego pasarlos en el return como diccionario a la variable context. 
+
