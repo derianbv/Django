@@ -125,7 +125,103 @@ Luego en base.html:
                     </li>
                 </ul>
         </nav>
-        {% block content %}
+        {% block content %} //Acá irá la parte específica de cada archivo html que herede de esta plantilla
         {% endblock %}
     </body>
 </html>
+
+
+Ahora en index.html: 
+
+
+{% extends 'base.html' %} //extiende la barra de navegación de base.html 
+{% load static %} 
+{% block content %} // parte específica de este archivo 
+<html>
+    <head>
+        <title>Home Page</title>
+    </head>
+    <script> // le pasa código JS (?) 
+       function set_customer(){
+        var cinput = document.querySelector('input[name="selected_customers"]:checked');
+            if (cinput){
+                cid = cinput.value;
+                window.location = "/interact/"+cid;
+            }
+            else
+                alert("Please select a customer");
+       }
+    </script>
+    <body>
+        <h1>Welcome to Customer 360</h1>
+        <p>Interact and Manage your Customers</p>
+        <a class="btn btn-primary" style="font-weight:bold; display:inline" onclick="set_customer()">Interact</a> // esto dispara el código de arriba 
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Customer ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Selected</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for customer in customers %} //Aca se le pasaron los customers a este archivo html 
+                    <tr>
+                        <td>{{customer.id }}</td>
+                        <td>{{customer.name }}</td>
+                        <td>{{customer.email }}</td>
+                        <td>{{customer.phone }}</td>
+                        <td>{{customer.address }}</td>
+                        <td>
+                            <input type="radio" name="selected_customers" value="{{ customer.id }}">
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>
+{% endblock content %}
+
+
+
+Ahora en add.html: 
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html>
+    <head>
+        <title>Add a Customer</title>
+    </head>
+    <body>
+        <h1>Add a new Customer</h1>
+        <form class="form" method="post" action="/create/">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="Name">Name </label>
+                <input type="text" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="Email">Email </label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="Phone">Phone</label>
+                <input type="tel" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="Address">Address</label>
+                <input type="text" name="address" required>
+            </div>
+            <button type="submit" class="btn btn-success">Add</button>
+            <p> {{ msg }} </p>
+        </form>
+    </body>
+</html>
+{% endblock content %}
