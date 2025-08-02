@@ -3,3 +3,9 @@ Sirve para que DJANGO se pueda comunicar con la base de datos y transferir los c
 
 en migrations/: 
 Crea documentos tipo 0001 o 0003 de cosas que aplicó o va a aplicar en la base de datos.
+
+
+makemigrations y migrate solo se usan para crear o modificar la estructura de la base de datos (esquema), es decir, para crear o actualizar tablas, columnas o índices, según los cambios que hagas en los modelos (models.py). NO SE USA CUANDO AGREGO O ELIMINO FILAS CON: 
+
+customer = Customer.objects.create(name=name, email=email, phone=phone, address=address)
+customer.save()
