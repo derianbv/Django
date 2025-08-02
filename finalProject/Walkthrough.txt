@@ -290,3 +290,63 @@ Ahora en interact.html:
     </body>
 </html>
 {% endblock content %}
+
+
+
+Ahora en summary.html: 
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html>
+    <body>
+        <h1> Interactions in last 30 Days  </h1>
+        {% if not interactions %} //hay una variable que se le pasa al html llamada interactions  
+            <p> there are no interactions in the last 30 days <p>
+        {% else %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Channel</th>
+                        <th>Direction</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for interaction in interactions %} 
+                        <tr>
+                            <td>{{ interaction.channel }}</td>
+                            <td>{{ interaction.direction }}</td>
+                            <td> {{ interaction.count }} </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <h4> Total : {{ count }} </h4>
+        {% endif %}
+    </body>
+</html>
+{% endblock content %}
+
+
+PARTE 3: CREACION DE LAS VISTAS -----------------------------------------------------------------------------------------------------------------------
+
+Debo crear un documento .py para las vistas 
+touch /home/project/customer360/customer360/views.py
+
+importo cosas: 
+
+from django.shortcuts import render
+from datetime import date, timedelta
+from django.db.models import Count
+from .models import *
+
+Creo la primer vista (matcheada al  html de index): 
+
+def index(request):
+    customers = Customer.objects.all() //Crear una lista con todos los customers. 
+    context = {"customers":customers} //context o la data va a ser la lista con todos los cx. 
+    return render(request,"index.html",context=context) //se le pasa esta variable a index.html 
+
+
+
