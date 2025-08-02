@@ -1,5 +1,7 @@
 Desde el principio: 
 
+EPP: POST y GET vienen de HTTP y son dos maneras diferente de enviar solicitudes a un servidor. 
+
 Cuando un cx envía información tipo POST a una vista, DJANGO crea un objeto tipo request que se le pasa a las fn() que manejan las vistas: 
 
 def mi_vista(request //este es el que se pasa):
