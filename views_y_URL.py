@@ -264,3 +264,15 @@ urlpatterns = [
 ]
 
 /interact/1/2/3/  -> interact(request, 1, 2, 3)
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+path(route, view, kwargs=None, name=None)
+
+Donde:
+
+route (string): Es la cadena que define el patrón de la URL. Puede incluir partes dinámicas entre < > para capturar valores de la URL y enviarlos como parámetros a la vista, por ejemplo, <int:id> o <str:username>.
+view (función o clase vista): La función o clase que se ejecutará cuando se acceda a esa URL. Esta función debe aceptar como primer parámetro el objeto request y, si la URL tiene parámetros capturados, estos se pasan como argumentos adicionales a la función en el mismo orden (y con nombres).
+kwargs (opcional, dict): Un diccionario de argumentos adicionales que se pasarán a la función vista cuando sea llamada.
+name (opcional, string): Un nombre con el que se identifica esta ruta. Es útil para referenciar la URL desde el código (por ejemplo, en templates o usando reverse()).
+
