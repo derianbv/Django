@@ -47,7 +47,85 @@ STATICFILES_DIRS = (
 )
 
 
+PARTE 3: MODELOS y TEMPLATES -----------------------------------------------------------------------------------------------------------------------
+
 crear archivo python de los módelos: 
 
 touch /home/project/customer360/customer360/models.py
 y dentro del archivo: from django.db import models 
+
+
+Creo una tabla llamada Customer con un id, un nombre que es un string, un email que tiene valor de email field, phone que es un charfield, y direccion que también es un string. 
+
+class Customer(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    phone = models.CharField(max_length=20)
+    address = models.CharField(max_length=200)
+
+    def __str__(self):
+        return str(self.id)
+
+Luego creo una tabla que llame al customer y le registre algunos datos dependiendo de una llamada telefónica que haya tenido, aquí se ve como en la opcion choises= 
+de un campo le puede pasar una lista con tuplas que se pueden setear para solo ser opciones válidas: 
+
+class Interaction(models.Model):
+    CHANNEL_CHOICES = [
+        ('phone', 'Phone'),
+        ('sms', 'SMS'),
+        ('email', 'Email'),
+        ('letter', 'Letter'),
+    ]
+
+    DIRECTION_CHOICES = [
+        ('inbound', 'Inbound'),
+        ('outbound', 'Outbound'),
+    ]
+
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    channel = models.CharField(max_length=15, choices=CHANNEL_CHOICES)
+    direction = models.CharField(max_length=10, choices=DIRECTION_CHOICES)
+    interaction_date = models.DateField(auto_now_add=True)
+    summary = models.TextField()
+
+
+Luego creo unos archivos .html y un directorio templates/:
+
+mkdir /home/project/customer360/customer360/templates
+touch /home/project/customer360/customer360/templates/add.html
+touch /home/project/customer360/customer360/templates/base.html
+touch /home/project/customer360/customer360/templates/index.html
+touch /home/project/customer360/customer360/templates/interact.html
+touch /home/project/customer360/customer360/templates/summary.html
+
+
+Luego en base.html: 
+
+
+{% load static %} //necesario para cargar cosas estáticas en Jinja2 
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> //Carga Boostrap 
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> //Carga Boostrap 
+        <link rel="stylesheet" href="{% static 'css/main.css' %}"> //Carga el documento .css con los estilos de CSS. 
+    </head>
+    <body>
+        <nav class="navbar navbar-default"> //crea una barra de nav 
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a style="color:black;" href="/">Home</a> //links a direntes partes 
+                    </li>
+                    <li>
+                        <a  style="color:black;" href="/create">New Customer</a>
+                    </li>
+                    <li>
+                        <a style="color:black;" href="/summary">Summary</a>
+                    </li>
+                </ul>
+        </nav>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>
