@@ -30,3 +30,24 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'customer360'
 ]
+
+
+setear CSRF para el proyecto específicamente: 
+
+CSRF_TRUSTED_ORIGINS = ['https://*.cognitiveclass.ai']
+
+Importar estos módulos para usar Path: 
+from pathlib import Path
+import os
+
+Especificar donde se buscan los static files: 
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR,"static/"),
+)
+
+
+crear archivo python de los módelos: 
+
+touch /home/project/customer360/customer360/models.py
+y dentro del archivo: from django.db import models 
