@@ -1,0 +1,35 @@
+Desde el principio: 
+
+Cuando un cx envía información tipo POST a una vista, DJANGO crea un objeto tipo request que se le pasa a las fn() que manejan las vistas: 
+
+def mi_vista(request //este es el que se pasa):
+    # 'request' viene de Django, no de un import. 
+    return render(request, 'template.html')
+
+
+Ahora request.POST: 
+es un diccionario especial (QueryDict) que contiene los datos del fórmulario html que fueron enviados a la vista <input>, <textarea>, <select>, etc.,
+y lo envía, esos datos llegan al servidor dentro del objeto request, si el fórmulario está en html con method="POST" entonces los datos llegan en request.POST:
+
+Ejemplo: 
+
+El formulario en HTML se ve así (tienen value= simulando el IN de un usuario): 
+
+<form method="post" action="/create_customer/">
+    <input type="text" name="name" value="Juan Perez">
+    <input type="email" name="email" value="juan@example.com">
+    <input type="text" name="phone" value="123456789">
+    <input type="text" name="address" value="Calle Falsa 123">
+    <button type="submit">Enviar</button>
+</form>
+
+y request.POST se ve así, es importante notar que la llave de cada dato será la que se ponga en la etiqueta del HTML en name=: 
+
+<QueryDict: {
+    'name': 'Juan Perez',
+    'email': 'juan@example.com',
+    'phone': '123456789',
+    'address': 'Calle Falsa 123'
+}>
+
+
