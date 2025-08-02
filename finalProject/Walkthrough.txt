@@ -1,4 +1,4 @@
-
+PARTE 1: SETEO INICIAL -----------------------------------------------------------------------------------------------------------------------
 En linux: 
 
 EPP: 
@@ -12,3 +12,21 @@ python modulo.py ejecuta el archivo directamente, con extensión.
 3 INICIAR PROYECTO (Proyecto es una carpeta): django-admin startproject customer360 && cd customer360 
 4 Aplicar cambios de la base de datos hechos con el ORM en migrations/ (make migrations) y subirlos (migrate): python3.11 manage.py makemigrations && python3.11 manage.py migrate  
 5 INICIAR SERVER: python3.11 manage.py runserver
+
+
+PARTE 2: SETEO DE PROYECTO -----------------------------------------------------------------------------------------------------------------------
+
+settings.py:**************************** 
+ALLOWED_HOSTS=["*"]
+
+
+Añadir el proyecto como app en Installed Apps: 
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'customer360'
+]
