@@ -201,8 +201,8 @@ Ahora en add.html:
     </head>
     <body>
         <h1>Add a new Customer</h1>
-        <form class="form" method="post" action="/create/">
-            {% csrf_token %}
+        <form class="form" method="post" action="/create/"> //esto es un fórmulario POST que envía el IN a la URL que esté en action= 
+            {% csrf_token %} //csrf token necesario 
             <div class="form-group">
                 <label for="Name">Name </label>
                 <input type="text" name="name" required>
@@ -221,6 +221,71 @@ Ahora en add.html:
             </div>
             <button type="submit" class="btn btn-success">Add</button>
             <p> {{ msg }} </p>
+        </form>
+    </body>
+</html>
+{% endblock content %}
+
+
+Ahora en interact.html: 
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html>
+    <head>
+        <title>Interact & Manage</title>
+    </head>
+    <script>
+        function selectButton(element) {
+            var buttons = element.parentElement.getElementsByClassName("btn");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+            element.classList.add("active");
+        }
+        function check_selected(){
+            var dirinput = document.querySelector('input[name="direction"]:checked');
+            var chaninput = document.querySelector('input[name="channel"]:checked');
+            var summary = document.querySelector('textarea[name="summary"]').value;
+
+            if (!dirinput || !chaninput || summary === ""){
+                alert("Please fill all required fields");
+                return false;
+            }
+            return true;
+        }
+    </script>
+    <body>
+        <h1>Interact With Your Customers</h1>
+        <form class="form" method="post"  onsubmit="return check_selected()" action="#">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Channel</label>
+                <div class="btn-group" data-toggle="buttons">
+                    {% for channel in channels %}
+                        <label class="btn btn-outline-primary" onclick="selectButton(this)">
+                            <input type="radio" name="channel" value="{{ channel.0 }}" required> {{ channel.1 }} //es lo mismo que channel[0] 
+                        </label>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Direction</label>
+                <div class="btn-group" data-toggle="buttons">
+                    {% for direction in directions %}
+                        <label class="btn btn-outline-primary" onclick="selectButton(this)">
+                            <input type="radio" name="direction" value="{{ direction.0 }}" required> {{ direction.1 }}
+                        </label>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Summary</label>
+                <textarea name="summary"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Save Interaction</button>
+            <p>{{ msg }}<p>
         </form>
     </body>
 </html>
