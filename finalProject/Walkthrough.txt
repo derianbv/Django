@@ -344,9 +344,19 @@ from .models import *
 Creo la primer vista (matcheada al  html de index): 
 
 def index(request):
-    customers = Customer.objects.all() //Crear una lista con todos los customers. 
+    customers = Customer.objects.all() //Crear una lista con todos los customers consultando la base de datos. 
     context = {"customers":customers} //context o la data va a ser la lista con todos los cx. 
-    return render(request,"index.html",context=context) //se le pasa esta variable a index.html 
+    return render(request,"index.html",context=context) //se le pasa esta variable a index.html usando context= 
 
 
-
+def create_customer(request):
+    if request.method == "POST":
+        name = request.POST["name"]
+        email = request.POST["email"]
+        phone = request.POST["phone"]
+        address = request.POST["address"]
+        customer = Customer.objects.create(name=name,email=email,phone=phone,address=address)
+        customer.save()
+        msg = "Successfully Saved a Customer"
+        return render(request,"add.html",context={"msg":msg})
+    return render(request,"add.html")
