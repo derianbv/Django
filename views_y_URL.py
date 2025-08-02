@@ -252,3 +252,15 @@ class EnrollView(View):
         return HttpResponseRedirect(reverse('onlinecourse:course_details', args=(course.id,)))
 
 '''
+
+Hay algunas vistas o funciones que reciben varios parámetros aparte de request: 
+
+def interact(request, cid, var3, var4):
+
+estas se pasan a la vista por medio de la URL: 
+
+urlpatterns = [
+    path('interact/<int:cid>/<int:var3>/<int:var4>/', views.interact, name='interact'),
+]
+
+/interact/1/2/3/  -> interact(request, 1, 2, 3)
