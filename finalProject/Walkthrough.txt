@@ -350,13 +350,13 @@ def index(request):
 
 
 def create_customer(request):
-    if request.method == "POST":
-        name = request.POST["name"]
+    if request.method == "POST": //si se envían datos al servidor usando POST 
+        name = request.POST["name"] // datos input del html se guardan en un diccionario con name, email, etc. Luego eso se recupera de requst.POST y se guarda como variable local en la función. 
         email = request.POST["email"]
         phone = request.POST["phone"]
         address = request.POST["address"]
-        customer = Customer.objects.create(name=name,email=email,phone=phone,address=address)
-        customer.save()
+        customer = Customer.objects.create(name=name,email=email,phone=phone,address=address) //Así crea la fila con esta info. 
+        customer.save() //actualiza la base de datos, no es necesario hacer makemigrations porque no tocamos la estructura de la tabla.
         msg = "Successfully Saved a Customer"
         return render(request,"add.html",context={"msg":msg})
     return render(request,"add.html")
