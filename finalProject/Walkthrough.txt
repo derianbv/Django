@@ -329,7 +329,7 @@ Ahora en summary.html:
 {% endblock content %}
 
 
-PARTE 3: CREACION DE LAS VISTAS -----------------------------------------------------------------------------------------------------------------------
+PARTE 4: CREACION DE LAS VISTAS -----------------------------------------------------------------------------------------------------------------------
 
 Debo crear un documento .py para las vistas 
 touch /home/project/customer360/customer360/views.py
@@ -417,7 +417,7 @@ def interact(request,cid):
     return render(request,"interact.html",context=context)
 
 
-Hay algunas vistas o funciones que reciben varios parámetros aparte de request: 
+Por qué la vista de arriba recibe dos parámetros? RTA: Hay algunas vistas o funciones que reciben varios parámetros aparte de request: 
 
 def interact(request, cid, var3, var4):
 
@@ -428,3 +428,19 @@ urlpatterns = [
 ]
 
 /interact/1/2/3/  -> interact(request, 1, 2, 3)
+
+
+
+PARTE 5: CREACION DE URLS -----------------------------------------------------------------------------------------------------------------------
+en urls.py:
+
+agregar: 
+from . import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('',views.index,name="index"), //el name es como asignarlo a la varianble index para que cuando la vayamos a pasar en otras partes, podamos usar esta var y no su dirección relativa :p. 
+    path('create/',views.create_customer,name='create_customer'),
+    path('interact/<int:cid>',views.interact,name='interact'),
+    path('summary/',views.summary,name='summary'),
+]
